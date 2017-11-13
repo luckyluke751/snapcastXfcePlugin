@@ -1,0 +1,7 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/lukas/CLionProjects/snapcastXfcePlugin
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") 
+-- Checking for module 'gtk+-3.0'
+--   Found gtk+-3.0, version 3.22.26
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/lukas/CLionProjects/snapcastXfcePlugin/cmake-build-debug

@@ -1,0 +1,3 @@
+/home/lukas/CLionProjects/snapcastXfcePlugin/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/lukas/CLionProjects/snapcastXfcePlugin/cmake-build-debug/CMakeFiles/snapcastXfcePlugin.dir
+/home/lukas/CLionProjects/snapcastXfcePlugin/cmake-build-debug/CMakeFiles/edit_cache.dir

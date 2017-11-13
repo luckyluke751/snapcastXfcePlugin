@@ -1,0 +1,14 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+Name=snapcastXfcePlugin
+Comment=Snapcast plugin for the Xfce panel
+
+Icon=xfce4-timer
+
+
+
+X-XFCE-Module=snapcastXfcePlugin
+X-XFCE-Internal=false
+X-XFCE-Unique=true
+X-XFCE-API=2.0
