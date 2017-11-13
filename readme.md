@@ -1,1 +1,2 @@
-### Spancast Xfce Plugin V0.1
+### Snapcast Xfce Plugin V0.1
+
