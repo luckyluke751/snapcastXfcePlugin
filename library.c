@@ -87,15 +87,15 @@ static void click_button(XfcePanelPlugin *plugin, GtkOrientation   orientation, 
 //-----------------Create New Plugin with GTKwidgets and co ------------------
 //-----------------------------------------------------------------------------
 static Plugin * new_plugin (XfcePanelPlugin *plugin){
-    Plugin   *sample;
+    Plugin   *pluginData;
     GtkOrientation  orientation;
     //GtkWidget      *label1;
 
     /* allocate memory for the plugin structure */
-    sample = g_slice_new0 (Plugin);
+    pluginData = g_slice_new0 (Plugin);
 
     /* pointer to plugin */
-    sample->plugin = plugin;
+    pluginData->plugin = plugin;
 
     /* read the user settings */
     //sample_read (sample);
@@ -104,42 +104,42 @@ static Plugin * new_plugin (XfcePanelPlugin *plugin){
     orientation = xfce_panel_plugin_get_orientation (plugin);
 
     /* create some panel widgets */
-    sample->ebox = gtk_event_box_new ();
-    gtk_widget_show (sample->ebox);
+    pluginData->ebox = gtk_event_box_new ();
+    gtk_widget_show (pluginData->ebox);
 
-    sample->hvbox = gtk_box_new (orientation, 2);
-    gtk_widget_show (sample->hvbox);
-    gtk_container_add (GTK_CONTAINER (sample->ebox), sample->hvbox);
+    pluginData->hvbox = gtk_box_new (orientation, 2);
+    gtk_widget_show (pluginData->hvbox);
+    gtk_container_add (GTK_CONTAINER (pluginData->ebox), pluginData->hvbox);
 
     /* some sample widgets */
-    sample->label1 = gtk_label_new (_("SaMple"));
-    gtk_widget_show (sample->label1);
-    gtk_box_pack_start (GTK_BOX (sample->hvbox), sample->label1, FALSE, FALSE, 0);
+    pluginData->label1 = gtk_label_new (_("SaMple"));
+    gtk_widget_show (pluginData->label1);
+    gtk_box_pack_start (GTK_BOX (pluginData->hvbox), pluginData->label1, FALSE, FALSE, 0);
 
-    sample-> button = xfce_panel_create_button();
-    gtk_widget_show(sample->button);
-    gtk_button_set_label(GTK_BUTTON(sample->button), "Start");
-    gtk_box_pack_start(GTK_BOX(sample->hvbox), sample->button, FALSE, FALSE, 0);
+    pluginData-> button = xfce_panel_create_button();
+    gtk_widget_show(pluginData->button);
+    gtk_button_set_label(GTK_BUTTON(pluginData->button), "Start");
+    gtk_box_pack_start(GTK_BOX(pluginData->hvbox), pluginData->button, FALSE, FALSE, 0);
 
 
 
     //Submenu
 
     // Vesuch Menu zu erstellen
-    sample->menu = gtk_menu_new();
+    pluginData->menu = gtk_menu_new();
 
-    sample->snapclientAn = gtk_menu_item_new_with_label("Snapclient An");
-    sample->snapclientAus = gtk_menu_item_new_with_label("Snapclient Aus");
+    pluginData->snapclientAn = gtk_menu_item_new_with_label("Snapclient An");
+    pluginData->snapclientAus = gtk_menu_item_new_with_label("Snapclient Aus");
 
-    gtk_menu_shell_append(GTK_MENU_SHELL(sample->menu), sample->snapclientAn);
-    gtk_menu_shell_append(GTK_MENU_SHELL(sample->menu), sample->snapclientAus);
+    gtk_menu_shell_append(GTK_MENU_SHELL(pluginData->menu), pluginData->snapclientAn);
+    gtk_menu_shell_append(GTK_MENU_SHELL(pluginData->menu), pluginData->snapclientAus);
 
-    g_signal_connect (sample->snapclientAn, "activate", G_CALLBACK (switch_sc_on), sample);
-    g_signal_connect (sample->snapclientAus, "activate", G_CALLBACK (switch_sc_off), sample);
+    g_signal_connect (pluginData->snapclientAn, "activate", G_CALLBACK (switch_sc_on), pluginData);
+    g_signal_connect (pluginData->snapclientAus, "activate", G_CALLBACK (switch_sc_off), pluginData);
 
-    gtk_widget_show_all (GTK_WIDGET (sample->menu));
+    gtk_widget_show_all (GTK_WIDGET (pluginData->menu));
 
-    return sample;
+    return pluginData;
 }
 
 
@@ -149,20 +149,20 @@ static Plugin * new_plugin (XfcePanelPlugin *plugin){
 
 static void plugin_construct (XfcePanelPlugin *plugin){
 
-    Plugin * sample;
+    Plugin * pluginData;
 
     /* setup transation domain */
     //xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
     //xfce_textdomain("libtestpluginxfce", "/usr/lib/xfce4/panel-plugins/", "UTF-8");
 
     /* create the plugin */
-    sample = new_plugin(plugin);
+    pluginData = new_plugin(plugin);
 
     /* add the ebox to the panel */
-    gtk_container_add (GTK_CONTAINER (plugin), sample->ebox);
+    gtk_container_add (GTK_CONTAINER (plugin), pluginData->ebox);
 
     /* show the panel's right-click menu on this ebox */
-    xfce_panel_plugin_add_action_widget (plugin, sample->ebox);
+    xfce_panel_plugin_add_action_widget (plugin, pluginData->ebox);
 
 //    /* connect plugin signals */
 //    g_signal_connect (G_OBJECT (plugin), "free-data",
@@ -186,6 +186,6 @@ static void plugin_construct (XfcePanelPlugin *plugin){
 //    g_signal_connect (G_OBJECT (plugin), "about", G_CALLBACK (sample_about), NULL);
 //
 
-    g_signal_connect (sample->button, "clicked", G_CALLBACK (click_button), sample);
+    g_signal_connect (pluginData->button, "clicked", G_CALLBACK (click_button), pluginData);
 
 }
