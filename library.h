@@ -11,6 +11,9 @@ typedef struct{
     GtkWidget       *hvbox;
     GtkWidget       *button;
 
+    GdkPixbuf * buf_icon_on;
+    GdkPixbuf * buf_icon_off;
+
 
     GtkWidget * menu;
 

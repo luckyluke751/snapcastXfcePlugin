@@ -33,13 +33,14 @@ XFCE_PANEL_PLUGIN_REGISTER (plugin_construct);
 //----------- Aktionen ----------------------------------------------------
 //-------------------------------------------------------------------------
 
-static void switch_sc_on(XfcePanelPlugin *plugin, GtkOrientation   orientation, Plugin    *sample){
+static void switch_sc_on(XfcePanelPlugin *plugin, Plugin    *pluginData){
     int status = system("/usr/bin/snapclient &");
 
-    //gtk_label_set_text(GTK_LABEL(sample->label1), "An");
+    GtkWidget* button_image = gtk_image_new_from_pixbuf(pluginData->buf_icon_on);
+    gtk_button_set_image(GTK_BUTTON(pluginData->button), button_image);
 }
 
-static void switch_sc_off(XfcePanelPlugin *plugin, GtkOrientation   orientation, Plugin    *sample){
+static void switch_sc_off(XfcePanelPlugin *plugin, Plugin    *pluginData){
 
     char pids[1024];
     char * pid;
@@ -55,6 +56,7 @@ static void switch_sc_off(XfcePanelPlugin *plugin, GtkOrientation   orientation,
     pid = strtok(pids," ");
 
     fprintf(f, pid);
+    fprintf(f, "%i\n", pluginData);
 
     while(pid != NULL){
         pidNr[i] = atoi(pid);
@@ -69,6 +71,10 @@ static void switch_sc_off(XfcePanelPlugin *plugin, GtkOrientation   orientation,
 
     pclose(fp);
     fclose(f);
+
+
+    GtkWidget* button_image = gtk_image_new_from_pixbuf(pluginData->buf_icon_off);
+    gtk_button_set_image(GTK_BUTTON(pluginData->button), button_image);
 
 }
 
@@ -85,13 +91,13 @@ static void click_button(XfcePanelPlugin *plugin, GtkOrientation   orientation, 
 
 //-----------------Create New Plugin with GTKwidgets and co ------------------
 //-----------------------------------------------------------------------------
-static Plugin * new_plugin (XfcePanelPlugin *plugin){
-    Plugin   *pluginData;
+void new_plugin (XfcePanelPlugin *plugin, Plugin * pluginData){
+    //Plugin   *pluginData;
     GtkOrientation  orientation;
     //GtkWidget      *label1;
 
     /* allocate memory for the plugin structure */
-    pluginData = g_slice_new0 (Plugin);
+
 
     /* pointer to plugin */
     pluginData->plugin = plugin;
@@ -119,8 +125,9 @@ static Plugin * new_plugin (XfcePanelPlugin *plugin){
     // Install icon: xdg-icon-resource install --size 16 snapclientPlugin-sc_16.png snapclientPlugin-sc^C
     //------------------------------------------------------------------------------------------------------
     GtkIconTheme *	theme = gtk_icon_theme_get_default ();
-    GdkPixbuf * buf = gtk_icon_theme_load_icon_for_scale (theme, "snapclientPlugin-sc", 20, 1, GTK_ICON_LOOKUP_FORCE_SIZE,NULL);
-    GtkWidget* button_image = gtk_image_new_from_pixbuf(buf);
+    pluginData->buf_icon_on = gtk_icon_theme_load_icon_for_scale (theme, "snapclientPlugin-sc", 20, 1, GTK_ICON_LOOKUP_FORCE_SIZE,NULL);
+    pluginData->buf_icon_off = gtk_icon_theme_load_icon_for_scale (theme, "snapclientPlugin-sc-off", 20, 1, GTK_ICON_LOOKUP_FORCE_SIZE,NULL);
+    GtkWidget* button_image = gtk_image_new_from_pixbuf(pluginData->buf_icon_off);
 
 
     //Set icon on button
@@ -145,7 +152,7 @@ static Plugin * new_plugin (XfcePanelPlugin *plugin){
 
     gtk_widget_show_all (GTK_WIDGET (pluginData->menu));
 
-    return pluginData;
+    //return pluginData;
 }
 
 
@@ -186,16 +193,16 @@ void about (XfcePanelPlugin *plugin)
 //------------- Plugin Constructor -------------------------------------
 //----------------------------------------------------------------------
 
-static void plugin_construct (XfcePanelPlugin *plugin){
+void plugin_construct (XfcePanelPlugin *plugin){
 
     Plugin * pluginData;
-
+    pluginData = g_slice_new0 (Plugin);
     /* setup transation domain */
     //xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
     //xfce_textdomain("libtestpluginxfce", "/usr/lib/xfce4/panel-plugins/", "UTF-8");
 
     /* create the plugin */
-    pluginData = new_plugin(plugin);
+    new_plugin(plugin, pluginData);
 
     /* add the ebox to the panel */
     gtk_container_add (GTK_CONTAINER (plugin), pluginData->ebox);
