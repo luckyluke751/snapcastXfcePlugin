@@ -9,7 +9,6 @@ typedef struct{
     /* panel widgets */
     GtkWidget       *ebox;
     GtkWidget       *hvbox;
-    GtkWidget       *label1;
     GtkWidget       *button;
 
 

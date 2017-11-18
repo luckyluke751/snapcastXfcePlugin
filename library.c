@@ -74,7 +74,6 @@ static void switch_sc_off(XfcePanelPlugin *plugin, GtkOrientation   orientation,
 
 static void click_button(XfcePanelPlugin *plugin, GtkOrientation   orientation, Plugin    *sample){
 
-    gtk_label_set_text(GTK_LABEL(sample->label1), "Sample");
 
     //Menu Öffnen
     gtk_menu_popup_at_pointer(GTK_MENU(sample->menu), NULL);
@@ -111,14 +110,21 @@ static Plugin * new_plugin (XfcePanelPlugin *plugin){
     gtk_widget_show (pluginData->hvbox);
     gtk_container_add (GTK_CONTAINER (pluginData->ebox), pluginData->hvbox);
 
-    /* some sample widgets */
-    pluginData->label1 = gtk_label_new (_("SaMple"));
-    gtk_widget_show (pluginData->label1);
-    gtk_box_pack_start (GTK_BOX (pluginData->hvbox), pluginData->label1, FALSE, FALSE, 0);
-
     pluginData-> button = xfce_panel_create_button();
     gtk_widget_show(pluginData->button);
-    gtk_button_set_label(GTK_BUTTON(pluginData->button), "Start");
+    //gtk_button_set_label(GTK_BUTTON(pluginData->button), "SC");
+
+
+    // Look for icon ----------------------------------------------------------------------------------------
+    // Insall icon: xdg-icon-resource install --size 16 snapclientPlugin-sc_16.png snapclientPlugin-sc^C
+    //------------------------------------------------------------------------------------------------------
+    GtkIconTheme *	theme = gtk_icon_theme_get_default ();
+    GdkPixbuf * buf = gtk_icon_theme_load_icon_for_scale (theme, "snapclientPlugin-sc", 20, 1, GTK_ICON_LOOKUP_FORCE_SIZE,NULL);
+    GtkWidget* button_image = gtk_image_new_from_pixbuf(buf);
+
+
+    //Set icon on button
+    gtk_button_set_image(GTK_BUTTON(pluginData->button), button_image);
     gtk_box_pack_start(GTK_BOX(pluginData->hvbox), pluginData->button, FALSE, FALSE, 0);
 
 
@@ -148,11 +154,9 @@ static Plugin * new_plugin (XfcePanelPlugin *plugin){
 
 //------------ About----------------------------------------------------
 //----------------------------------------------------------------------
-void
-sample_about (XfcePanelPlugin *plugin)
+void about (XfcePanelPlugin *plugin)
 {
-    /* about dialog code. you can use the GtkAboutDialog
-     * or the XfceAboutInfo widget */
+
     GdkPixbuf *icon;
 
     const gchar *auth[] =
@@ -161,15 +165,14 @@ sample_about (XfcePanelPlugin *plugin)
                     NULL
             };
 
-    //icon = xfce_panel_pixbuf_from_source ("xfce4-sample-plugin", NULL, 32);
     icon = xfce_panel_pixbuf_from_source ("/home/lukas/CLionProjects/snapcastXfcePlugin/icon/sc_kl.ico", NULL, 32);
     gtk_show_about_dialog (NULL,
                            "logo",         icon,
                            "license",      xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
                            "version",      "v01",
                            "program-name", "Snapclient Xfce Plugin",
-                           "comments",     _("Snapcast Xfce"),
-                           "website",      "www.www.de",
+                           "comments",     _("Toggle Snapclient from Xfce-Panel"),
+                           "website",      "https://github.com/luckyluke751/snapcastXfcePlugin",
                            "copyright",    _("Copyright \xc2\xa9 2017 Lukas Merkle\n"),
                            "authors",      auth,
                            NULL);
@@ -219,7 +222,7 @@ static void plugin_construct (XfcePanelPlugin *plugin){
 
     /* show the about menu item and connect signal */
     xfce_panel_plugin_menu_show_about (plugin);
-    g_signal_connect (G_OBJECT (plugin), "about", G_CALLBACK (sample_about), NULL);
+    g_signal_connect (G_OBJECT (plugin), "about", G_CALLBACK (about), NULL);
 
     g_signal_connect (pluginData->button, "clicked", G_CALLBACK (click_button), pluginData);
 
