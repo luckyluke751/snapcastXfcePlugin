@@ -1,2 +1,2 @@
 Options: 
-CMake: 3.9.5@/usr/bin/cmake
+CMake: 3.9.6@/usr/bin/cmake

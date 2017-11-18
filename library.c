@@ -36,7 +36,7 @@ XFCE_PANEL_PLUGIN_REGISTER (plugin_construct);
 static void switch_sc_on(XfcePanelPlugin *plugin, GtkOrientation   orientation, Plugin    *sample){
     int status = system("/usr/bin/snapclient &");
 
-    gtk_label_set_text(GTK_LABEL(sample->label1), "An");
+    //gtk_label_set_text(GTK_LABEL(sample->label1), "An");
 }
 
 static void switch_sc_off(XfcePanelPlugin *plugin, GtkOrientation   orientation, Plugin    *sample){
@@ -144,6 +144,42 @@ static Plugin * new_plugin (XfcePanelPlugin *plugin){
 
 
 
+
+
+//------------ About----------------------------------------------------
+//----------------------------------------------------------------------
+void
+sample_about (XfcePanelPlugin *plugin)
+{
+    /* about dialog code. you can use the GtkAboutDialog
+     * or the XfceAboutInfo widget */
+    GdkPixbuf *icon;
+
+    const gchar *auth[] =
+            {
+                    "Lukas Merkle",
+                    NULL
+            };
+
+    //icon = xfce_panel_pixbuf_from_source ("xfce4-sample-plugin", NULL, 32);
+    icon = xfce_panel_pixbuf_from_source ("/home/lukas/CLionProjects/snapcastXfcePlugin/icon/sc_kl.ico", NULL, 32);
+    gtk_show_about_dialog (NULL,
+                           "logo",         icon,
+                           "license",      xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
+                           "version",      "v01",
+                           "program-name", "Snapclient Xfce Plugin",
+                           "comments",     _("Snapcast Xfce"),
+                           "website",      "www.www.de",
+                           "copyright",    _("Copyright \xc2\xa9 2017 Lukas Merkle\n"),
+                           "authors",      auth,
+                           NULL);
+
+    if (icon)
+        g_object_unref (G_OBJECT (icon));
+}
+
+
+
 //------------- Plugin Constructor -------------------------------------
 //----------------------------------------------------------------------
 
@@ -166,25 +202,24 @@ static void plugin_construct (XfcePanelPlugin *plugin){
 
 //    /* connect plugin signals */
 //    g_signal_connect (G_OBJECT (plugin), "free-data",
-//                      G_CALLBACK (sample_free), sample);
+//                      G_CALLBACK (sample_free), pluginData);
 //
 //    g_signal_connect (G_OBJECT (plugin), "save",
-//                      G_CALLBACK (sample_save), sample);
+//                      G_CALLBACK (sample_save), pluginData);
 //
 //    g_signal_connect (G_OBJECT (plugin), "size-changed",
-//                      G_CALLBACK (sample_size_changed), sample);
+//                      G_CALLBACK (sample_size_changed), pluginData);
 //
 //    g_signal_connect (G_OBJECT (plugin), "orientation-changed",
-//                      G_CALLBACK (sample_orientation_changed), sample);
-////
-//    /* show the configure menu item and connect signal */
-//    xfce_panel_plugin_menu_show_configure (plugin);
-//    g_signal_connect (G_OBJECT (plugin), "configure-plugin", G_CALLBACK (sample_configure), sample);
-////
-//    /* show the about menu item and connect signal */
-//    xfce_panel_plugin_menu_show_about (plugin);
-//    g_signal_connect (G_OBJECT (plugin), "about", G_CALLBACK (sample_about), NULL);
-//
+//                      G_CALLBACK (sample_orientation_changed), pluginData);
+
+   /* show the configure menu item and connect signal */
+//   xfce_panel_plugin_menu_show_configure (plugin);
+//   g_signal_connect (G_OBJECT (plugin), "configure-plugin", G_CALLBACK (sample_configure), pluginData);
+
+    /* show the about menu item and connect signal */
+    xfce_panel_plugin_menu_show_about (plugin);
+    g_signal_connect (G_OBJECT (plugin), "about", G_CALLBACK (sample_about), NULL);
 
     g_signal_connect (pluginData->button, "clicked", G_CALLBACK (click_button), pluginData);
 
