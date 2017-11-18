@@ -12,11 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27108ced-ab31-4d18-abac-c1af7fe17037" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/snapcastXfcePlugin.dir/library.c.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/icon/sc.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/snapcastXfcePlugin.dir/library.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/snapcastXfcePlugin.dir/library.c.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/libsnapcastXfcePlugin.so" afterPath="$PROJECT_DIR$/cmake-build-debug/libsnapcastXfcePlugin.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library.c" afterPath="$PROJECT_DIR$/library.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library.h" afterPath="$PROJECT_DIR$/library.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="library.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="library.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="131" column="13" lean-forward="true" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
+            <state relative-caret-position="248">
+              <caret line="118" column="105" lean-forward="true" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="105" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
                 <element signature="e#239#257#0" expanded="true" />
@@ -61,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -97,9 +97,9 @@
       <list>
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/snapcastXfcePlugin.desktop" />
-        <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/library.h" />
         <option value="$PROJECT_DIR$/library.c" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
@@ -187,7 +187,7 @@
       <workItem from="1510602865865" duration="377000" />
       <workItem from="1510603328388" duration="4436000" />
       <workItem from="1510780353623" duration="190000" />
-      <workItem from="1511008291270" duration="5351000" />
+      <workItem from="1511008291270" duration="5405000" />
     </task>
     <task id="LOCAL-00001" summary="added readme">
       <created>1510603402805</created>
@@ -217,11 +217,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511009424278</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added installed icon support">
+      <created>1511013881222</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1511013881222</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11916000" />
+    <option name="totallyTimeSpent" value="11970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="26" width="1922" height="1057" extended-state="6" />
@@ -260,7 +267,8 @@
     <MESSAGE value="fix readme" />
     <MESSAGE value="changed varnames" />
     <MESSAGE value="added icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="added icon" />
+    <MESSAGE value="added installed icon support" />
+    <option name="LAST_COMMIT_MESSAGE" value="added installed icon support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -424,14 +432,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/snapcastXfcePlugin" />
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/snapcastXfcePlugin.desktop">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -458,12 +458,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/library.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="131" column="13" lean-forward="true" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
+        <state relative-caret-position="248">
+          <caret line="118" column="105" lean-forward="true" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="105" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
             <element signature="e#239#257#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

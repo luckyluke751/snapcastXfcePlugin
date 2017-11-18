@@ -116,7 +116,7 @@ static Plugin * new_plugin (XfcePanelPlugin *plugin){
 
 
     // Look for icon ----------------------------------------------------------------------------------------
-    // Insall icon: xdg-icon-resource install --size 16 snapclientPlugin-sc_16.png snapclientPlugin-sc^C
+    // Install icon: xdg-icon-resource install --size 16 snapclientPlugin-sc_16.png snapclientPlugin-sc^C
     //------------------------------------------------------------------------------------------------------
     GtkIconTheme *	theme = gtk_icon_theme_get_default ();
     GdkPixbuf * buf = gtk_icon_theme_load_icon_for_scale (theme, "snapclientPlugin-sc", 20, 1, GTK_ICON_LOOKUP_FORCE_SIZE,NULL);
